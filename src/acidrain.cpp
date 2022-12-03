@@ -144,7 +144,6 @@ int acidrain() {
         case '\n':
             if (highlight == 2) {
                 endwin();
-                print_main_screen();
                 return 0;
             } else if (highlight == 1) {
                 start_game();

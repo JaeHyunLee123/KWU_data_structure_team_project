@@ -1,6 +1,6 @@
 #include "main_screen.h"
 #include "line_typing_screen.h"
-//#include "acidrain.h"
+#include "acidrain.h"
 #include "metal_dig.h"
 
 int main(){
@@ -17,7 +17,8 @@ int main(){
         case 2:
             break;
         case 3:
-  //          acidrain();
+            acidrain();
+            break;
         case 4:
             metal_dig();
             break;
