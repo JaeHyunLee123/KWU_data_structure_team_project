@@ -8,11 +8,12 @@
 #include <vector>
 #include <cassert>
 #include <stdlib.h>
+#include <pthread.h>
 #include "useful_funtion.h"
 #include "line_typing_screen.h"
 #include "main_screen.h"
 #include "metal_dig.h"
-#include "acidrain.h"
+//#include "acidrain.h"
 
 std::string MAIN_CHOICES[]= {
     "1.Line Typing Prcatice",
@@ -47,7 +48,7 @@ R"!(    \_\/     \_\/ \_\/ \__\/\__\/ \_____\/  \__\/  \________\/ \_____\/ \___
 /*-------------------- Funtion Definition --------------------*/
 
 
-void print_main_menu(WINDOW *menu_win, int highlight){
+int print_main_menu(WINDOW *menu_win, int highlight){
     int x=7;
     int y=2;
 
@@ -67,7 +68,7 @@ void print_main_menu(WINDOW *menu_win, int highlight){
 }
 
 
-void print_main_screen(){
+int print_main_screen(){
     int highlight=1;
     int key;
     
@@ -86,7 +87,7 @@ void print_main_screen(){
     if(has_colors() == FALSE){
         puts("Terminal does not support colors!");
         endwin();
-        return;
+        return 0;
     }else{
         start_color();
         init_pair(1,COLOR_BLACK, COLOR_WHITE);
@@ -122,34 +123,11 @@ void print_main_screen(){
 					++highlight;
 				break;
             case '\n':
-                switch(highlight){
-                case 1:
-                    endwin();
-                    line_typing_screen();
-                    break;
-                case 3:
-                    endwin();
-                    acidrain();
-                    break;     
-                case 4:
-                    endwin();
-                    metal_dig();
-                    break;
-                case 5:
-                
-                    clrtoeol();
-                    refresh();
-                    endwin();
-                    return;
-                }
-                break;
+                clrtoeol();
+                refresh();
+                endwin();
+                return highlight;                    
         }
         print_main_menu(menu,highlight);        
     }
-
-
-    clrtoeol();
-	refresh();
-    endwin();
-
 }

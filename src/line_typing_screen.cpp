@@ -11,7 +11,6 @@
 #include <cassert>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <thread>
 #include <wait.h>
 #include <time.h>
 #include <sys/time.h>
@@ -228,7 +227,10 @@ void line_typing_screen(){
     wbkgd(result_win,COLOR_PAIR(6));
     print_result(result_win,(int)average_typing_speed, (int)max_typing_speed,accuration);
 
-    print_main_screen(); 
+
+    clrtoeol();
+    refresh();
+    endwin();
 }
 
 std::string get_typing(WINDOW* typing_win){

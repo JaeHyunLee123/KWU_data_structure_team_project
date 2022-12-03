@@ -1,6 +1,9 @@
 #ifndef LINE_TYPING_SCREEN_H
 #define LINE_TYPING_SCREEN_H
 
+#include <string>
+#include <vector>
+#include <ncurses.h>
 
 void line_typing_screen();
 

@@ -1,7 +1,7 @@
 CC = g++
 
 # C++ 컴파일러 옵션
-CXXFLAGS = -lpthread -g
+CXXFLAGS = -g
 
 # 링커 옵션
 LDFLAGS =
