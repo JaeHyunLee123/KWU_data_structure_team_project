@@ -2,7 +2,7 @@
 
 
 ** 컴파일 방법(중요!) **
-1. obj 폴더에 들어가서 './makeobj.sh.'을 입력한다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
+1. obj 폴더에 들어가서 './makeobj.sh.'을 입력한
 2. 폴더에서 나와 './make.sh'을 입력한다
 3. 'TypingPractice'라는 프로그램이 생성된다. 
 
