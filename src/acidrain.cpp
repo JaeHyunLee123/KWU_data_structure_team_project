@@ -1,3 +1,5 @@
+#include "acidrain.h"
+#include "main_screen.h"
 #include <ncurses.h>
 #include <pthread.h>
 #include <signal.h>
@@ -8,8 +10,6 @@
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
-#include "main_screen.h"
-#include "acidrain.h"
 
 #define MAX 100
 #define BASIC_MODE 0
@@ -70,8 +70,7 @@ std::string ascii[] = {
 
 std::string CHOICES[] = {"1. GAME START", "2. EXIT"};
 
-
-//커서이동부분
+// 커서이동부분
 void print_menu(WINDOW *menu_win, int highlight) {
     int x = 68;
     int y = 28;
@@ -121,12 +120,13 @@ int acidrain() {
     signal(SIGQUIT, exit);
     refresh();
 
-    //커서이동부분
+    // 커서이동부분
     keypad(window1, true);
     int key;
     int highlight = 1;
-    print_menu(window1, highlight);
-    while (true) {
+    int end_num = 0;
+    while (end_num == 0) {
+        print_menu(window1, highlight);
         key = wgetch(window1);
         switch (key) {
         case KEY_UP:
@@ -142,19 +142,20 @@ int acidrain() {
                 highlight = 2;
             break;
         case '\n':
-            if (highlight == 2) {
-                endwin();
-                return 0;
-            } else if (highlight == 1) {
+            if (highlight == 1) {
                 start_game();
                 all_Clear();
                 acidrain();
+                end_num = 1;
+            } else {
+                endwin();
+                end_num = 1;
+                return 0;
             }
         }
-        print_menu(window1, highlight);
     }
-
     endwin();
+    return 0;
 }
 
 // 게임 시작 함수
@@ -181,14 +182,14 @@ void start_game() {
     pthread_t th;
 
     // Game Name
-    move(15, 131);
+    move(15, 137);
     addstr("Level");
-    move(16, 134);
+    move(16, 140);
     sprintf(level_bar, "%02d", level);
     addstr(level_bar);
-    move(15, 71);
+    move(15, 74);
     addstr("ADDING_MODE");
-    move(16, 71);
+    move(16, 74);
     addstr("HIDE_MODE");
 
     // score print
@@ -206,11 +207,11 @@ void start_game() {
 
     draw(44, 7,
          "---------------------------------------------------------------------"
-         "------------------------------------------------------------");
+         "------------------------------------------------------------------");
 
     // enter_position
     blankdraw(45);
-    draw(45, 57, "   | Enter | : ");
+    draw(45, 60, "   | Enter | : ");
 
     // 쓰레드 생성
     pthread_create(&th, NULL, game_Board, NULL);
@@ -226,7 +227,7 @@ void start_game() {
                 break;
             else {
                 if (enter_position == 19 && c != '\n' && c != 127) {
-                    move(45, 73);
+                    move(45, 76);
                     addstr(typingText);
                 }
                 // enter 들어오면 문자열 찾아서 삭제
@@ -239,13 +240,14 @@ void start_game() {
 
                     draw(44, 7,
                          "-----------------------------------------------------"
+                         "------"
                          "----------------"
                          "-----------------------------------------------------"
                          "-------");
 
                     blankdraw(45);
-                    draw(45, 57, "   | Enter | : ");
-                    move(45, 73);
+                    draw(45, 60, "   | Enter | : ");
+                    move(45, 76);
 
                     break;
 
@@ -258,24 +260,26 @@ void start_game() {
 
                         draw(44, 7,
                              "-------------------------------------------------"
+                             "------"
                              "--------------------"
                              "-------------------------------------------------"
                              "-----------");
                         blankdraw(45);
-                        draw(45, 57, "   | Enter | : ");
-                        move(45, 73);
+                        draw(45, 60, "   | Enter | : ");
+                        move(45, 76);
                         addstr(typingText);
                     }
                     // 없으면 빈문자열 출력
                     else {
                         draw(44, 7,
                              "-------------------------------------------------"
+                             "------"
                              "--------------------"
                              "-------------------------------------------------"
                              "-----------");
                         blankdraw(45);
-                        draw(45, 57, "   | Enter | : ");
-                        move(45, 73);
+                        draw(45, 60, "   | Enter | : ");
+                        move(45, 76);
                         addstr("                       ");
                     }
                 }
@@ -285,12 +289,13 @@ void start_game() {
 
                     draw(44, 7,
                          "-----------------------------------------------------"
+                         "------"
                          "----------------"
                          "-----------------------------------------------------"
                          "-------");
                     blankdraw(45);
-                    draw(45, 57, "   | Enter | : ");
-                    move(45, 73);
+                    draw(45, 60, "   | Enter | : ");
+                    move(45, 76);
                     addstr(typingText);
                 }
 
@@ -307,7 +312,7 @@ void start_game() {
     init_pair(2, COLOR_WHITE, COLOR_BLUE);
 
     refresh();
-    result = newwin(10, 40, 23, 51);
+    result = newwin(10, 40, 23, 54);
     wbkgd(result, COLOR_PAIR(2));
     print_result(result, score);
     all_Clear();
@@ -418,7 +423,7 @@ void *game_Board(void *m) {
                 temp = temp->right;
         }
 
-        move(45, 73); // 커서 이동
+        move(45, 76); // 커서 이동
 
         if (speed_up)
             usleep(timer / 2);
@@ -429,33 +434,33 @@ void *game_Board(void *m) {
 }
 
 void level_up() {
-    timer -= 100000; //간격 0.1초 감소
-    level++;         //레벨업
-    move(15, 131);
+    timer -= 100000; // 간격 0.1초 감소
+    level++;         // 레벨업
+    move(15, 137);
     addstr("Level");
-    move(16, 134);
+    move(16, 140);
     sprintf(level_bar, "%02d", level);
     addstr(level_bar);
     if (level == 2) {
-        move(16, 71);
+        move(16, 74);
         addstr("HIDE_MODE");
         addstr(" FAST_MODE");
     }
     if (level == 3) {
-        move(16, 71);
+        move(16, 74);
         addstr("HIDE_MODE");
         addstr(" FAST_MODE");
         addstr(" BLINK_MODE");
     }
     if (level == 4) {
-        move(16, 71);
+        move(16, 74);
         addstr("HIDE_MODE");
         addstr(" FAST_MODE");
         addstr(" BLINK_MODE");
         addstr(" REVERSE_MODE");
     }
     if (level == 5) {
-        move(16, 71);
+        move(16, 74);
         addstr("HIDE_MODE");
         addstr(" FAST_MODE");
         addstr(" BLINK_MODE");
@@ -464,7 +469,7 @@ void level_up() {
     }
 
     if (level == 6) {
-        move(16, 71);
+        move(16, 74);
         addstr("HIDE_MODE");
         addstr(" BLINK_MODE");
         addstr(" REVERSE_MODE");
@@ -472,7 +477,7 @@ void level_up() {
         addstr("         ");
     }
 
-    level_Clock = 0; //시계 초기화
+    level_Clock = 0; // 시계 초기화
 
     if (level < 6)
         level_mode++;
@@ -634,11 +639,12 @@ void draw(int row, int col, const char *str) {
 void blankdraw(int row) {
     move(row, 7);
     addstr("                                                                   "
+           "      "
            "                                                              ");
     refresh();
 }
 
-void reverse(nodePointer *node) //노드의 데이터를 반대로 표현.
+void reverse(nodePointer *node) // 노드의 데이터를 반대로 표현.
 {
     int size = strlen((*node)->str);
     char temp;
@@ -652,7 +658,7 @@ void reverse(nodePointer *node) //노드의 데이터를 반대로 표현.
     }
 }
 
-void diagonal(nodePointer *node) //대각선 이동
+void diagonal(nodePointer *node) // 대각선 이동
 {
     int n = rand() % 2; // 0 왼쪽 1 오른쪽
 
@@ -728,4 +734,3 @@ void print_result(WINDOW *result_win, int score) {
     refresh();
     endwin();
 }
-
