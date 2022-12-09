@@ -17,7 +17,7 @@ void add_Word(const char *, int);
 const char *wordDB();
 void draw(int, int, const char *);
 void blankdraw(int);
-void exit(int);
+void exits(int);
 
 // game
 void start_game();

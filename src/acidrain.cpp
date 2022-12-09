@@ -117,7 +117,7 @@ int acidrain() {
     initscr();
     srand(time(NULL));
     // signal 처리
-    signal(SIGQUIT, exit);
+    signal(SIGQUIT, exits);
     refresh();
 
     // 커서이동부분
@@ -321,7 +321,7 @@ void start_game() {
 }
 
 // 강제 종료
-void exit(int signum) {
+void exits(int signum) {
     all_Clear();
     curs_set(1);
     endwin();
