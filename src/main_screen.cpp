@@ -48,7 +48,7 @@ R"!(    \_\/     \_\/ \_\/ \__\/\__\/ \_____\/  \__\/  \________\/ \_____\/ \___
 /*-------------------- Funtion Definition --------------------*/
 
 
-int print_main_menu(WINDOW *menu_win, int highlight){
+void print_main_menu(WINDOW *menu_win, int highlight){
     int x=7;
     int y=2;
 
@@ -130,4 +130,6 @@ int print_main_screen(){
         }
         print_main_menu(menu,highlight);        
     }
+
+    return -1;
 }

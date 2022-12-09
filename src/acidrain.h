@@ -2,6 +2,7 @@
 #define ACID_RAIN
 
 #include <unistd.h>
+#include <ncurses.h>
 
 
 // 단어 노드

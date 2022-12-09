@@ -144,11 +144,19 @@ void line_typing_screen(){
 
         //입력해야하는 문자열과 사용자가 입력한 문자열이 다르면 빨간색으로 표시
         for(int i=0; i<3; i++){
-            for(int j=0; j<complete_string[i].length(); j++){
+            for(int j=0; j<user_input_string[i].length(); j++){
                 if(complete_string[i][j] != user_input_string[i][j]){
                     wattron(complete_win,COLOR_PAIR(5));
                     mvwprintw(complete_win,12-i*5,5+j,"%c",complete_string[i][j]);
                     mvwprintw(complete_win,13-i*5,5+j,"%c",user_input_string[i][j]);
+                    wattroff(complete_win,COLOR_PAIR(5));
+                }
+            }
+
+            if(complete_string[i].length() > user_input_string[i].length()){
+                for(int j = user_input_string[i].length(); j<complete_string[i].length(); j++){
+                    wattron(complete_win,COLOR_PAIR(5));
+                    mvwprintw(complete_win,12-i*5,5+j,"%c",complete_string[i][j]);
                     wattroff(complete_win,COLOR_PAIR(5));
                 }
             }
@@ -158,7 +166,7 @@ void line_typing_screen(){
         wrefresh(waiting_win); 
         wrefresh(typing_win);
 
-        std::string temp;
+        std::string temp="";
 
         wmove(typing_win,1,5);
 
@@ -188,14 +196,17 @@ void line_typing_screen(){
         if(wrong_words>0) accuration = (1-(wrong_words/total_words))*100;
         mvwprintw(information_win,9,5, "Accuration :  %.2lf",accuration);
 
-        //타수 계산
-        gap = end - start;
-        temp_typing_speed = 60*((double)temp.length()/gap); //방금 입력한 문장의 타수 계산
-        if(temp_typing_speed>max_typing_speed) max_typing_speed = temp_typing_speed; //방금 입력한 문장의 타수가 기존의 타수보다 빠르면 교체
-        if(progression!=0){
-            typing_speed.push_back(temp_typing_speed); //방금 타수를 벡터에 저장해서
-            average_typing_speed = get_average_ignore_zero(typing_speed); // 평균을 구함
+        //타수 계산, 유저가 스킵한 경우는 스킵
+        if(temp.length() > 2){
+            gap = end - start;
+            temp_typing_speed = 60*((double)temp.length()/gap); //방금 입력한 문장의 타수 계산
+            if(temp_typing_speed>max_typing_speed) max_typing_speed = temp_typing_speed; //방금 입력한 문장의 타수가 기존의 타수보다 빠르면 교체
+            if(progression!=0){
+                typing_speed.push_back(temp_typing_speed); //방금 타수를 벡터에 저장해서
+                average_typing_speed = get_average_ignore_zero(typing_speed); // 평균을 구함
+            }
         }
+
         //타수 출력
         mvwprintw(information_win,3,5, "Average type speed : %.0lf",average_typing_speed); //평균 타수
         mvwprintw(information_win,5,5, "Max typing speed   : %.0lf",max_typing_speed); // 최대 타수
