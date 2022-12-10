@@ -1,13 +1,12 @@
+#include "metal_dig.h"
+#include "main_screen.h"
 #include "metal_dig_ingame.h" //ingame을 구현하기 위한 헤더
-#include "useful_funtion.h"       //아스키 아트 구현이 담긴 헤더
+#include "useful_funtion.h"   //아스키 아트 구현이 담긴 헤더
 #include <cstdlib>
 #include <ncurses.h>
 #include <string>
-#include "main_screen.h"
-#include "metal_dig.h"
 
 using namespace std;
-
 
 void metal_dig() {
 
@@ -139,6 +138,7 @@ void title() {
 
     //아스키 아트 출력
     new_draw_ascii_art(title_ui, path, 7, 30, 7);
+    box(title_ui, 0, 0);
 
     //위에서 설정했던 title_ui 출력
     wrefresh(title_ui);

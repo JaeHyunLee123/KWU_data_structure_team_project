@@ -64,20 +64,20 @@ ingame_ui에서 호출되서 게임을 진행하는 함수이다.
 #ifndef METAL_DIG_INGAME_H
 #define METAL_DIG_INGAME_H
 
-#include <vector>
-#include <string>
 #include <ncurses.h>
+#include <string>
+#include <vector>
 
 using namespace std;
 
-//기본적인 UI생성
+// 기본적인 UI생성
 void ingame_ui();
 
-//게임에 사용할 단어 선택 함수
+// 게임에 사용할 단어 선택 함수
 vector<string> choose_word();
 
 // score_ui를 지속적으로 갱신해야 함으로 이를 출력하는 함수를 만들었다.
-void showScore(WINDOW *score_ui, int player_score, int ai_score);
+void showScore(WINDOW *score_ui, int player_score, int ai_score, int level);
 
 // word_box가 지속적으로 갱신됨으로 이를 위한 함수를 따로 만듬
 void show_box(WINDOW *word_box, vector<string> word, vector<int> count);
@@ -85,7 +85,7 @@ void show_box(WINDOW *word_box, vector<string> word, vector<int> count);
 // text_box를 출력하는 함수
 void showTextBox(WINDOW *text_box);
 
-//게임 실행 함수
+// 게임 실행 함수
 void play_game(int level);
 
 // AI 함수
