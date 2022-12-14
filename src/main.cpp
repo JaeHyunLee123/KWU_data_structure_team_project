@@ -2,6 +2,7 @@
 #include "line_typing_screen.h"
 #include "acidrain.h"
 #include "metal_dig.h"
+#include "transcript.h"
 
 int main(){
 
@@ -12,15 +13,16 @@ int main(){
     switch (choose)
         {
         case 1:
-            line_typing_screen();
+            line_typing_screen(); //짧은 글 연습
             break;
         case 2:
+            typing_screen();//긴 글 연습
             break;
         case 3:
-            acidrain();
+            acidrain(); // 산성비
             break;
         case 4:
-            metal_dig();
+            metal_dig(); // 자원캐기
             break;
         case 5:
             return 0;

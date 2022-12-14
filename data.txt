@@ -1,0 +1,15 @@
+The goal of carring out neuromorphic chips is to enable them to learn as quickly and efficiently as the human brain, that is now far superior to
+the most powerfull computers.
+Neuromorphic computing is expected to be easier to develop and innovatively apply intelligence and automation in the field in a variety of AI edge
+devices and applications which require continuous learning and adaptation to evolving real world data in real time.
+The Loihi processor based on the Intel Neuromorphic chip gets inspiration from human brain. Like brain, Royhey can handle specific
+workloads which are up to 1,000 times faster and 10,000 times more efficient than traditional processors. Intel also announced in March
+Pohoiki Springs, the newest and most powerful neuromorphic research system that provides the computational power of 100 million neurons
+PoHoyiki Springs operates at a power level of less than 500 watts and extends the Royhi Neuromorphic Research Chip, Intel's first
+self-learning chip that combines neuromorphic capabilities, efficiency, scale, and on-chip learning capabilities by more than 750
+times. Especially, PoHoyki Springs is a Data Center Rack-Mounted System, it is Intel’s largest neuromorphic computing system developed
+until today, and 768 Royhi neuromorphic research chips have been integrated within a chassis of give standard servers.
+- Future semiconductors with the most efficient human brain.
+The " neuromorphic chip" is semiconductor that imitates the nervous system that compose the human brain. As can be seen from the compound words of
+neuron and morphic, it’s applied to semiconductors by imitating neurons and synapses that compose human brain nerves, so it can
+efficiently handle unstructured signals and a lot of data at once with high energy efficiency.

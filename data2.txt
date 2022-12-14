@@ -1,0 +1,18 @@
+Nowadays most of computer devices are based on Von Neuman structure.
+As we know, Von Neuman structure shows impressive performance and reliability therefore, many people trust this structure and use it widely.
+In Von Neuman structure, CPU and memory device are separated and they should use a lot of resources and time to communicate with each other.
+Because of this, computers need additional resources for communication between CPU and memory device.
+Therefore, we decide to develop a neuromorphic chip and start our business with the neuromorphic chip.
+Neuromorphic chips are next generation chips which mimic structure and operation of human brain.
+As memory neurons and computation neurons are not strictly separated in human brains,
+CPU and memory device are not separated like Von Neuman structure in neuromorphic chips.
+CPU and memory are combined in neuromorphic chips.
+thus, neuromorphic chips can save computation result simultaneously without additional sequences.
+Because of this characteristic, neuromorphic chips can save more resources than Von Neuman based devices and show fast computational speed.
+In addition, using neuromorphic chips, we can use Artificial Neural Network (ANN) in hardware.
+ANN is key technology for Artificial Intelligent (AI) and
+it is only implemented with software in large Von Neuman devices such as high-performance server.
+However, with neuromorphic chips, ANN can be implemented with small hardware and don’t need a lot of resources like conventional servers.
+So, we can develop small and energy efficient AI devices with neuromorphic chips and use it for many portable devices such as smartphones and laptops.
+As we can see the benefits and probability of neuromorphic chips,
+our neuromorphic chip can be a good substitute of Von Neuman device and an important device for ANN and AI.

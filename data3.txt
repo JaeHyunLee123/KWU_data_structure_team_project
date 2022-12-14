@@ -1,0 +1,14 @@
+In conventional Von Neuman devices, CPU does not have enough storages to save data, therefore it communicates with memory and saves data in it.
+Moreover, memory can’t remember data without power, it needs auxiliary memory devices such as hard disc and Solid-State Disk (SSD).
+Many energies are used for these devices to communicate each other, and this point makes Von Neuman devices have low energy efficiency.
+We try to solve this problem and provide energy efficient neuromorphic chips for computers.
+Nowadays, we can use many AI services based on ANN and these services show impressive performance.
+ANN mimics human’s brain like neuromorphic chips.
+However, it is only implemented with software in high performance servers which consume a lot of energy.
+In other words, we use ANN with inefficient environment, and we can’t maximize benefits of ANN.
+Because of this, ANN is now only used with big and fast devices such as workstations and servers.
+People who don’t have high performance devices can’t use ANN properly.
+Neuromorphic devices are optimized for ANN, and it allows ANN to be used in small and portable devices.
+Therefore, accessibility of ANN can be improved, and more people can use and apply ANN to many fields.
+Conventional devices based on Von Neuman structure have energy efficient problem and optimization problem with ANN.
+Neuromorphic chip shows high energy efficiency and compatibility with ANN. Thus, it can be a good solution for these problems.
